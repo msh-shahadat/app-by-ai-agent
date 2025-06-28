@@ -1,0 +1,37 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f7f7fa;
+  color: #222;
+}
+
+.navbar {
+  display: flex;
+  gap: 2rem;
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  padding: 1rem 2rem;
+  align-items: center;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.navbar a.active, .navbar a:hover {
+  color: #ffd700;
+}
+
+.main-content {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 2rem 2.5rem;
+  min-height: 70vh;
+}
