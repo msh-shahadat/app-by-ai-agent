@@ -19,33 +19,43 @@ import { Router } from '@angular/router';
       <ng-container *ngFor="let block of article.contents; let i = index">
         <div [ngSwitch]="block.contentType">
           <ng-container *ngSwitchCase="'Paragraph'">
-            <label>Paragraph</label>
-            <textarea [(ngModel)]="block.paragraphContent.text" name="paragraph-{{i}}"></textarea>
+            <ng-container *ngIf="block.paragraphContent">
+              <label>Paragraph</label>
+              <textarea [(ngModel)]="block.paragraphContent.text" name="paragraph-{{i}}"></textarea>
+            </ng-container>
           </ng-container>
           <ng-container *ngSwitchCase="'BulletList'">
-            <label>Bullet List</label>
-            <select [(ngModel)]="block.bulletListContent.listType" name="listType-{{i}}">
-              <option value="Ordered">Ordered</option>
-              <option value="Unordered">Unordered</option>
-            </select>
-            <ng-container *ngFor="let item of block.bulletListContent.items; let j = index">
-              <input type="text" [(ngModel)]="item.text" name="item-{{i}}-{{j}}" />
+            <ng-container *ngIf="block.bulletListContent">
+              <label>Bullet List</label>
+              <select [(ngModel)]="block.bulletListContent.listType" name="listType-{{i}}">
+                <option value="Ordered">Ordered</option>
+                <option value="Unordered">Unordered</option>
+              </select>
+              <ng-container *ngFor="let item of block.bulletListContent.items; let j = index">
+                <input type="text" [(ngModel)]="item.text" name="item-{{i}}-{{j}}" />
+              </ng-container>
+              <button type="button" (click)="addBulletItem(i)">Add Item</button>
             </ng-container>
-            <button type="button" (click)="addBulletItem(i)">Add Item</button>
           </ng-container>
           <ng-container *ngSwitchCase="'Image'">
-            <label>Image URL</label>
-            <input type="text" [(ngModel)]="block.imageContent.imageUrl" name="imageUrl-{{i}}" />
-            <label>Caption</label>
-            <input type="text" [(ngModel)]="block.imageContent.caption" name="caption-{{i}}" />
+            <ng-container *ngIf="block.imageContent">
+              <label>Image URL</label>
+              <input type="text" [(ngModel)]="block.imageContent.imageUrl" name="imageUrl-{{i}}" />
+              <label>Caption</label>
+              <input type="text" [(ngModel)]="block.imageContent.caption" name="caption-{{i}}" />
+            </ng-container>
           </ng-container>
           <ng-container *ngSwitchCase="'YouTubeVideo'">
-            <label>YouTube URL</label>
-            <input type="text" [(ngModel)]="block.videoContent.videoUrl" name="ytUrl-{{i}}" />
+            <ng-container *ngIf="block.videoContent">
+              <label>YouTube URL</label>
+              <input type="text" [(ngModel)]="block.videoContent.videoUrl" name="ytUrl-{{i}}" />
+            </ng-container>
           </ng-container>
           <ng-container *ngSwitchCase="'ServerVideo'">
-            <label>Server Video URL</label>
-            <input type="text" [(ngModel)]="block.videoContent.videoUrl" name="svUrl-{{i}}" />
+            <ng-container *ngIf="block.videoContent">
+              <label>Server Video URL</label>
+              <input type="text" [(ngModel)]="block.videoContent.videoUrl" name="svUrl-{{i}}" />
+            </ng-container>
           </ng-container>
         </div>
         <button type="button" (click)="removeBlock(i)">Remove Block</button>
